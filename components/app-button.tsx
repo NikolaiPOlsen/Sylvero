@@ -40,5 +40,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         maxWidth: 400,
+        marginBottom: 15,
     },
 });
