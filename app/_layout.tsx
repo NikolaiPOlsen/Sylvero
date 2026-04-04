@@ -1,16 +1,8 @@
+import { Colors } from '@/constants/theme';
 import { useAuthContext } from '@/hooks/use-auth-context';
 import AuthProvider from '@/providers/auth-provider';
-import * as Notifications from 'expo-notifications';
 import { Redirect, Stack } from 'expo-router';
-
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-    shouldShowBanner: true,
-    shouldShowList: true,
-  }),
-});
+import { useColorScheme } from 'react-native';
 
 export function RootNavigation() {
   const { isLoggedIn, isLoading } = useAuthContext();
@@ -25,11 +17,15 @@ export function RootNavigation() {
   }
 }
 export default function RootLayout() {
+  const colorScheme = useColorScheme();
+  const themeColors = Colors[colorScheme ?? 'light'];
   return (
     <AuthProvider>
         <Stack>
           <Stack.Screen name='(auth)' options={{ headerShown: false }}/>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
+          <Stack.Screen name="screens/register-customer" options={{ headerBackTitle: 'Tilbake', title: 'Registrer kunde', headerTintColor: themeColors.text, headerStyle: { backgroundColor: themeColors.background } }}/>
+          <Stack.Screen name="screens/new-order" options={{ headerBackTitle: 'Tilbake', title: 'Ny bestilling', headerTintColor: themeColors.text, headerStyle: { backgroundColor: themeColors.background } }}/>
         </Stack>
         <RootNavigation/>
     </AuthProvider>

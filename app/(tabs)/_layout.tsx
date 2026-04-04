@@ -8,8 +8,8 @@ export default function TabLayout() {
   const themedColors = Colors[colorScheme ?? 'light'];
 
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: themedColors.primary, animation: 'shift' }}>
-      <Tabs.Screen name={'home'} options={{ headerShown: false, tabBarLabel: 'Home'}} />
+    <Tabs screenOptions={{ headerShown: false, tabBarStyle: { display: 'none' } }}>
+      <Tabs.Screen name={'home'} options={{ headerShown: false }} />
     </Tabs>
   );
 }
