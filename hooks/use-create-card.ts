@@ -1,4 +1,4 @@
-import { createTrelloCard } from '@/providers/trelloService';
+import { createTrelloCard } from '@/providers/trello-service';
 
 export const useCreateCard = () => {
     const handleCreateCard = async (
