@@ -37,6 +37,9 @@ Velora is built for repair shops, service technicians, and small businesses that
    `EXPO_PUBLIC_TRELLO_API_KEY=your_api_key`
    `EXPO_PUBLIC_TRELLO_TOKEN=your_token`
    `EXPO_PUBLIC_TRELLO_LIST_ID_ARBEID=your_list_id`
+   `EXPO_PUBLIC_SUPABASE_URL=supabase_url`
+   `EXPO_PUBLIC_SUPABASE_KEY=your_supabase_api_key`
+
 
 3. **Start the app**
 ```bash
