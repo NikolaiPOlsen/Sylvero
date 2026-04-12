@@ -2,7 +2,6 @@ export interface PartsSupplier {
     fetchParts: (query: string) => Promise<Device[]>;
     authenticate?: () => Promise<void>;
     fetchPartDetails?: (partId: string) => Promise<[Part]>;
-    fetchPartPhotos?: (partId: string) => Promise<string[]>;
     addToCart?: (partId: string, quantity: number) => Promise<void>;
 }
 
@@ -12,12 +11,13 @@ export type OperationResult = {
 };
 
 export type Device = {
-    Geraeteid: string;
-    Name: string;
-    Price: number;
-    Photos: string;
+    Artikelnummer: string;
+    Hersteller: string;
+    Artikelbezeichnung: string;
+    Bruttopreis: number;
+    Artikelthumbnail: string;
+    Lagerbestand: number;
 };
-
 export type Part = {
     Artikelnummer: string;
     Name: string;
