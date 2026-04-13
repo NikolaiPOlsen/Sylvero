@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     },
     addToCartButton: {
         height: height * 0.06,
-        width: width * 0.3,
-        borderRadius: 25,
+        padding: 12,
+        borderRadius: 12,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
