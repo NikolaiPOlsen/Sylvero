@@ -22,6 +22,7 @@ import { router } from 'expo-router';
 export default function RegisterCustomerScreen() {
     const colorScheme = useColorScheme();
     const themeColors = Colors[colorScheme ?? 'light'];
+    const [isLoading, setIsLoading] = useState(false);
     const insets = useSafeAreaInsets();
     const { width, height } = useWindowDimensions();
     const isPortrait = height > width;
@@ -103,7 +104,6 @@ export default function RegisterCustomerScreen() {
                     placeholder="0"
                     placeholderTextColor={themeColors.icon}
                     style={[styles.quantityInput, { borderColor: themeColors.border, color: themeColors.text, backgroundColor: themeColors.card }]}
-                    keyboardType="numeric"
                     onChangeText={(val) => setQuantities((prev) => ({ ...prev, [item.Artikelnummer]: Number(val) }))}
                     value={String(quantities[item.Artikelnummer] ?? 0)}
                 />
@@ -174,11 +174,23 @@ export default function RegisterCustomerScreen() {
                                     Søkeresultater - {parts.length} {parts.length === 1 ? 'del' : 'deler'} funnet
                                 </Text>
                             )}
+                            {parts.length > 0 && (
+                                <AddToCartButton
+                                    label="Legg i handlekurv"
+                                    onPress={handleAddAllToCart}
+                                />
+                            )}
                         </View>
                     }
                     ListEmptyComponent={null}
                     renderItem={renderPartCard}
                 />
+                <View style={{ justifyContent: 'center', alignItems: 'center', padding: 20 }}>
+                    <AppButton 
+                        label="Registrer kunde"
+                        onPress={handlePress} />
+
+                </View>
             </KeyboardAvoidingView>
         );
     }
@@ -220,7 +232,6 @@ export default function RegisterCustomerScreen() {
                         style={[styles.inputBox, { backgroundColor: themeColors.card, color: themeColors.text, height: inputHeight }]}
                         value={phonenumber}
                         onChangeText={setPhonenumber}
-                        keyboardType="numeric"
                     />
 
                     <Text style={[styles.inputLabel, { color: themeColors.text }]}>Telefonmodell</Text>
@@ -274,13 +285,16 @@ export default function RegisterCustomerScreen() {
                             showsVerticalScrollIndicator={false}
                             contentContainerStyle={{ paddingBottom: 20 }}
                             renderItem={renderPartCard}
+                            onLayout={() => setIsLoading(true)} 
                         />
                         
                     )}
-                    <AddToCartButton 
-                    label="Legg i handlekurv"
-                    onPress={handleAddAllToCart}
-                />
+                    {parts.length > 0 && (
+                        <AddToCartButton 
+                            label="Legg i handlekurv"
+                            onPress={handleAddAllToCart}
+                        />
+                    )}
                 </View>
 
             </View>
