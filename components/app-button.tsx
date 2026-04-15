@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        maxWidth: 4800,
+        maxWidth: width * 0.9,
         marginBottom: 15,
     },
     searchButton: {
