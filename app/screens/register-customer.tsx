@@ -14,15 +14,15 @@ export default function RegisterCustomerScreen() {
     const TRELLO_LISTID_ARBEID = process.env.EXPO_PUBLIC_TRELLO_LIST_ID_ARBEID || '';
     const [customername, setCustomerName] = useState('');
     const [phonenumber, setPhonenumber] = useState('');
-    const [problem, setProblem] = useState('');
+    const [desc, setDesc] = useState('');
     const [pris, setPris] = useState('');6
 
     const handlePress = async (listId: string) => {
-        const result = await handleCreateCard(listId, customername, phonenumber, problem, pris);
+        const result = await handleCreateCard(listId, customername, phonenumber, desc, pris);
         if (result) {
             setCustomerName('');
             setPhonenumber('');
-            setProblem('');
+            setDesc('');
             setPris('');
             router.replace('/home');
         }
@@ -34,7 +34,7 @@ export default function RegisterCustomerScreen() {
                 <ThemedView style={styles.container}>
                     <TextInput placeholder='Navn' style={[styles.inputBox, { borderColor: themeColors.border, color: themeColors.text }]} value={customername} onChangeText={setCustomerName} />
                     <TextInput placeholder='Telefon' style={[styles.inputBox, { borderColor: themeColors.border, color: themeColors.text }]} value={phonenumber} onChangeText={setPhonenumber} keyboardType="numeric" />
-                    <TextInput multiline placeholder='Problem' style={[styles.inputBoxMultiline, { borderColor: themeColors.border, color: themeColors.text }]} value={problem} onChangeText={setProblem} />
+                    <TextInput multiline placeholder='Beskrivelse' style={[styles.inputBoxMultiline, { borderColor: themeColors.border, color: themeColors.text }]} value={desc} onChangeText={setDesc} />
                     <TextInput placeholder='Pris' style={[styles.inputBox, { borderColor: themeColors.border, color: themeColors.text }]} value={pris} onChangeText={setPris} keyboardType="numeric" />
                     <AppButton label='Registrer kunde' onPress={() => handlePress(TRELLO_LISTID_ARBEID)} />
                 </ThemedView>
