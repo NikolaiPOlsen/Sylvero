@@ -7,8 +7,8 @@ type MaterialIconName = ComponentProps<typeof MaterialIcons>['name'];
 
 type Props = {
     onPress: () => void;
-    label: string;
-    icon?: React.ReactNode;
+    label?: string;
+    icon?: MaterialIconName;
     disabled?: boolean;
 }
 
@@ -49,13 +49,7 @@ export function AddToCartButton({ onPress, label, icon, disabled }: Props) {
     )
 }
 
-type SearchButtonProps = {
-    onPress: () => void;
-    icon: MaterialIconName;
-    disabled?: boolean;
-}
-
-export function SearchButton({ onPress, icon, disabled }: SearchButtonProps) {
+export function SearchButton({ onPress, icon, disabled }: Props) {
         const colorScheme = useColorScheme();
         const themeColors = Colors[colorScheme ?? 'light'];
     return (
@@ -68,6 +62,24 @@ export function SearchButton({ onPress, icon, disabled }: SearchButtonProps) {
                 (pressed || disabled) && {opacity: 0.5}
             ]}>
             <MaterialIcons name={icon} size={24} color={themeColors.background} />
+        </Pressable>
+    )
+}
+
+export function FunctionButton({ onPress, icon, disabled, label }: Props) {
+        const colorScheme = useColorScheme();
+        const themeColors = Colors[colorScheme ?? 'light'];
+    return (
+        <Pressable
+            onPress={onPress}
+            disabled={disabled}
+            style={({ pressed }) => [
+                styles.functionButton,
+                {backgroundColor: themeColors.primary},
+                (pressed || disabled) && {opacity: 0.5}
+            ]}>
+            <MaterialIcons name={icon} size={48} color={themeColors.background} />
+            <Text style={[styles.functionText, { color: themeColors.background }]}>{label}</Text>
         </Pressable>
     )
 }
@@ -111,4 +123,17 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    functionButton: {
+        width: 200,
+        height: 200,
+        borderRadius: 12,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    functionText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    }
+
 });
