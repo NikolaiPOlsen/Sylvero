@@ -17,9 +17,8 @@ Deno.serve(async (req) => {
 
     const data = await response.json();
     if (!response.ok) {
-        console.error("Trello error:", response.status, JSON.stringify(data));
         return new Response(JSON.stringify({ error: data?.message || "Trello request failed", status: response.status }), {
-            status: 200,
+            status: 400,
             headers: { "Content-Type": "application/json" },
         });
     }
