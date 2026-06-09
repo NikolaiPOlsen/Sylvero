@@ -3,6 +3,7 @@ import { useAuthContext } from '@/src/hooks/use-auth-context';
 import AuthProvider from '@/src/providers/auth-provider';
 import { Redirect, Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 export function RootNavigation() {
   const { isLoggedIn, isLoading } = useAuthContext();
@@ -29,6 +30,7 @@ export default function RootLayout() {
           <Stack.Screen name="screens/user-profile" options={{ headerBackTitle: 'Tilbake', title: 'Profil', headerTintColor: themeColors.text, headerStyle: { backgroundColor: themeColors.background } }}/>
         </Stack>
         <RootNavigation/>
+        <Toast/>
     </AuthProvider>
   );
 }
