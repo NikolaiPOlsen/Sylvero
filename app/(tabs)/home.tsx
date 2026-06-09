@@ -6,6 +6,7 @@ import { useAuthContext } from '@/src/hooks/use-auth-context';
 import * as expo from 'expo-router';
 import { useWindowDimensions, StyleSheet, useColorScheme, View, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { HomeModal } from '@/src/components/Home-screen/modal';
 
 export default function HomeScreen() {
     const colorScheme = useColorScheme();
@@ -38,7 +39,7 @@ export default function HomeScreen() {
             <View style={{flexDirection: 'row', gap: 16, marginTop: 24}}>
                 <HomeButton icon="add-shopping-cart" label='Ny ordre' onPress={() => expo.router.push('/screens/new-order')} />
                 <HomeButton icon="person-add" label='Registrer kunde' onPress={() => expo.router.push('/screens/register-customer')} />
-                <HomeButton icon="search" label='Søk etter kunde' onPress={() => false} />
+                <HomeButton icon="search" label='Søk etter kunde' onPress={() => HomeModal(true, (show) => {})} />
             </View>
         </View>
     )
