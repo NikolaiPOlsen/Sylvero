@@ -15,7 +15,7 @@ Deno.serve(async (req)=>{
   const token = Deno.env.get("TRELLO_TOKEN");
   const url = `https://api.trello.com/1/search?query=${encodeURIComponent(phone)}&idBoards=${boardId}&modelTypes=cards&cards_limit=20&key=${key}&token=${token}`;
   const response = await fetch(url, {
-    method: "POST"
+    method: "GET"
   });
   const data = await response.json();
   if (!response.ok) {
